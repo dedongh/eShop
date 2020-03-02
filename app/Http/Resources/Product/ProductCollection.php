@@ -21,6 +21,7 @@ class ProductCollection extends Resource
                 'name' => $this->name,
                 'description' => $this->details,
                 'quantity' => $this->quantity,
+                'price' => $this->price,
                 'rating' => $this->reviews->count() > 0 ?
                     round($this->reviews->sum('rating') / $this->reviews->count()) : 0,
                 'image' => $this->image,
