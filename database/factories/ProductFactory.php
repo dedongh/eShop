@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Model\Product;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
@@ -12,6 +13,9 @@ $factory->define(Product::class, function (Faker $faker) {
         'price'=>$faker->numberBetween(100,1000),
         'details'=>$faker->paragraph,
         'quantity'=>$faker->randomDigit,
-        'image'=>$faker->imageUrl($width = 640, $height = 480)
+        'image'=>$faker->imageUrl($width = 640, $height = 480),
+        'user_id'=> function () {
+            return User::all()->random();
+        }
     ];
 });
