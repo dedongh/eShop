@@ -27,7 +27,13 @@ class ProductCollection extends Resource
                 'image' => $this->image,
             ],
             'relationships' => [
-                'product'=> route('products.show', $this->id)
+                'product'=> route('products.show', $this->id),
+                'user'=>[
+                    'data'=>[
+                        'type'=>'user',
+                        'id'=>$this->user_id
+                    ]
+                ]
                 //'reviews' => route('reviews.index', $this->id)
             ]
         ];
