@@ -29,14 +29,9 @@ class ProductResource extends Resource
                 'image' => $this->image,
             ],
             'relationships' => [
-                'reviews' => route('reviews.index', $this->id),
-                'user'=>[
-                    'data'=>[
-                        'type'=>'user',
-                        'id'=>$this->user_id
-                    ]
-                ]
+                new ProductRelationshipResource($this),
             ],
         ];
     }
+
 }

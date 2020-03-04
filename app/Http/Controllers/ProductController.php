@@ -25,8 +25,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        return new ProductCollection(Product::with(['reviews'])->paginate());
         //
-        return ProductCollection::collection(Product::paginate(20));
+        //return ProductCollection::collection(Product::paginate(20));
         //return ProductResource::collection(Product::all());
         //return ProductResource::collection(Product::paginate());
     }
