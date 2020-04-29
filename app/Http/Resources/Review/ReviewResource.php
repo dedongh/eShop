@@ -15,10 +15,14 @@ class ReviewResource extends Resource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'customer' => $this->customer,
-            'body' => $this->review,
-            'rating' => $this->rating
+            'type'=>'review',
+            'id' => (string)$this->id,
+            'attributes'=>[
+                'customer' => $this->customer,
+                'body' => $this->review,
+                'rating' => $this->rating
+            ],
+
         ];
     }
 }

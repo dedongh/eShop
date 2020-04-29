@@ -21,11 +21,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ProductCollection
      */
     public function index()
     {
-        return new ProductCollection(Product::with(['reviews'])->paginate());
+        return new ProductCollection(Product::with(['reviews','users'])->paginate());
         //
         //return ProductCollection::collection(Product::paginate(20));
         //return ProductResource::collection(Product::all());

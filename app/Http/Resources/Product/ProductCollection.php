@@ -3,7 +3,9 @@
 namespace App\Http\Resources\Product;
 
 use App\Http\Resources\Review\ReviewResource;
+use App\Http\Resources\User\UserResource;
 use App\Model\Review;
+use App\Model\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 
@@ -54,8 +56,17 @@ class ProductCollection extends ResourceCollection
 
         );
 
+        $users = $this->collection->map(
+            function ($user) {
+                return $user->users;
+            }
+        );
+
+        $included = $users->merge($reviews)/*->unique('id')*/;
+
         return [
-            'included'=>$this->withIncluded($reviews),
+            //'included'=>$this->withIncluded($reviews),
+            'included'=>$this->withIncluded($included),
         ];
     }
 
@@ -65,6 +76,9 @@ class ProductCollection extends ResourceCollection
             function ($include) {
                 if ($include instanceof Review) {
                     return new ReviewResource($include);
+                }
+                if ($include instanceof User) {
+                    return new UserResource($include);
                 }
             }
         );
